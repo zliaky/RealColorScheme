@@ -98,13 +98,13 @@
                   android:layout_height="20dp"
                   android:textColor="#ff0000"
                   android:text="R"
-                  android:textSize="10dp"
                   android:gravity="center"
                   android:layout_alignParentLeft="true"/>
         <EditText android:id="@+id/colorR"
+                  android:editable="false"
                   android:layout_width="50dp"
                   android:layout_height="20dp"
-                  android:textColor="#939393"
+                  android:textColor="#333333"
                   android:background="@drawable/edittext_shape"
                   android:layout_toRightOf="@id/textR"/>
 
@@ -116,9 +116,10 @@
                   android:gravity="center"
                   android:layout_toRightOf="@+id/colorR"/>
         <EditText android:id="@+id/colorG"
+                  android:editable="false"
                   android:layout_width="50dp"
                   android:layout_height="20dp"
-                  android:textColor="#939393"
+                  android:textColor="#333333"
                   android:background="@drawable/edittext_shape"
                   android:layout_toRightOf="@id/textG"/>
 
@@ -129,9 +130,11 @@
                   android:text="B"
                   android:gravity="center"
                   android:layout_toRightOf="@+id/colorG"/>
-        <EditText android:layout_width="50dp"
+        <EditText android:id="@+id/colorB"
+                  android:editable="false"
+                  android:layout_width="50dp"
                   android:layout_height="20dp"
-                  android:textColor="#939393"
+                  android:textColor="#333333"
                   android:background="@drawable/edittext_shape"
                   android:layout_toRightOf="@id/textB"/>
 
@@ -144,9 +147,10 @@
                   android:layout_alignParentBottom="true"
                   android:layout_alignParentLeft="true"/>
         <EditText android:id="@+id/colorC"
+                  android:editable="false"
                   android:layout_width="50dp"
                   android:layout_height="20dp"
-                  android:textColor="#939393"
+                  android:textColor="#333333"
                   android:background="@drawable/edittext_shape"
                   android:layout_alignParentBottom="true"
                   android:layout_toRightOf="@id/textC"/>
@@ -160,9 +164,10 @@
                   android:layout_alignParentBottom="true"
                   android:layout_toRightOf="@+id/colorC"/>
         <EditText android:id="@+id/colorM"
+                  android:editable="false"
                   android:layout_width="50dp"
                   android:layout_height="20dp"
-                  android:textColor="#939393"
+                  android:textColor="#333333"
                   android:background="@drawable/edittext_shape"
                   android:layout_alignParentBottom="true"
                   android:layout_toRightOf="@id/textM"/>
@@ -176,9 +181,10 @@
                   android:layout_alignParentBottom="true"
                   android:layout_toRightOf="@+id/colorM"/>
         <EditText android:id="@+id/colorY"
+                  android:editable="false"
                   android:layout_width="50dp"
                   android:layout_height="20dp"
-                  android:textColor="#939393"
+                  android:textColor="#333333"
                   android:background="@drawable/edittext_shape"
                   android:layout_alignParentBottom="true"
                   android:layout_toRightOf="@id/textY"/>
@@ -191,27 +197,28 @@
                   android:gravity="center"
                   android:layout_alignParentBottom="true"
                   android:layout_toRightOf="@+id/colorY"/>
-        <EditText android:layout_width="50dp"
+        <EditText android:id="@+id/colorK"
+                  android:editable="false"
+                  android:layout_width="50dp"
                   android:layout_height="20dp"
-                  android:textColor="#939393"
+                  android:textColor="#333333"
                   android:background="@drawable/edittext_shape"
                   android:layout_alignParentBottom="true"
                   android:layout_toRightOf="@id/textK"/>
 
     </RelativeLayout>
 
-    <RelativeLayout android:layout_width="260dp"
-                    android:layout_height="110dp"
-                    android:layout_marginTop="40dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_gravity="center_horizontal">
+    <LinearLayout android:layout_width="260dp"
+                  android:layout_height="110dp"
+                  android:orientation="horizontal"
+                  android:layout_marginTop="30dp"
+                  android:layout_marginLeft="5dp"
+                  android:layout_gravity="center_horizontal">
 
         <LinearLayout android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
                       android:orientation="vertical"
-                      android:layout_alignParentLeft="true"
-                      android:layout_alignParentTop="true">
-
+                      android:paddingRight="30dp">
             <Button android:id="@+id/paletteToHome"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
@@ -224,11 +231,16 @@
                       android:textColor="#a491ce"/>
         </LinearLayout>
 
+        <Button android:id="@+id/showButton"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:clickable="false"
+                android:background="@drawable/button_shape"/>
+
         <LinearLayout android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
                       android:orientation="vertical"
-                      android:layout_alignParentRight="true"
-                      android:layout_alignParentTop="true">
+                      android:paddingLeft="30dp">
             <Button android:id="@+id/paletteToPrint"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
@@ -242,6 +254,6 @@
         </LinearLayout>
 
 
-    </RelativeLayout>
+    </LinearLayout>
 
 </LinearLayout>

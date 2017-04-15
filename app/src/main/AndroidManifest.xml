@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.realcolorscheme.colorscheme">
 
-    <uses-sdk android:minSdkVersion="25"/>
+    <uses-sdk android:minSdkVersion="21"/>
 
     <application
             android:allowBackup="true"
