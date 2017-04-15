@@ -80,8 +80,14 @@ public class ColorPicker extends View {
 
     private Matrix gradientRotationMatrix;
 
+    private PaletteActivity palette;
+
     /** Currently selected color */
     private float[] colorHSV = new float[] { 0f, 0f, 1f };
+
+    public void setPalette(PaletteActivity palette) {
+        this.palette = palette;
+    }
 
     public ColorPicker(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
@@ -315,6 +321,9 @@ public class ColorPicker extends View {
 
                     invalidate();
                 }
+
+                palette.setColorShowBtn(getColor());
+                palette.setColorText(getColor());
 
                 return true;
         }
