@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="#ffffff">
+
+    <com.realcolorscheme.colorscheme.ColorPicker
+            android:id="@+id/colorPicker"
+            android:layout_width="220dp"
+            android:layout_height="220dp"
+            android:layout_gravity="top|center_horizontal" />
+
+    <RelativeLayout android:layout_width="260dp"
+                    android:layout_height="120dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_gravity="center_horizontal">
+
+        <Button android:id="@+id/colorBtn0"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/button_shape"
+                android:layout_gravity="center_horizontal" />
+
+    </RelativeLayout>
+
+
+    <View   android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"/>
+
+    <RelativeLayout android:layout_width="280dp"
+                    android:layout_height="80dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_gravity="center_horizontal">
+
+        <TextView android:id="@+id/textR"
+                  android:layout_width="20dp"
+                  android:layout_height="20dp"
+                  android:textColor="#ff0000"
+                  android:text="R"
+                  android:textSize="10dp"
+                  android:gravity="center"
+                  android:layout_alignParentLeft="true"/>
+        <EditText android:id="@+id/colorR"
+                  android:layout_width="50dp"
+                  android:layout_height="20dp"
+                  android:textColor="#939393"
+                  android:layout_toRightOf="@id/textR"/>
+
+        <TextView android:id="@+id/textG"
+                  android:layout_width="20dp"
+                  android:layout_height="20dp"
+                  android:textColor="#00ff00"
+                  android:text="G"
+                  android:gravity="center"
+                  android:layout_toRightOf="@+id/colorR"/>
+        <EditText android:id="@+id/colorG"
+                  android:layout_width="50dp"
+                  android:layout_height="20dp"
+                  android:textColor="#939393"
+                  android:layout_toRightOf="@id/textG"/>
+
+        <TextView android:id="@+id/textB"
+                  android:layout_width="20dp"
+                  android:layout_height="20dp"
+                  android:textColor="#0000ff"
+                  android:text="B"
+                  android:gravity="center"
+                  android:layout_toRightOf="@+id/colorG"/>
+        <EditText android:layout_width="50dp"
+                  android:layout_height="20dp"
+                  android:textColor="#939393"
+                  android:layout_toRightOf="@id/textB"/>
+
+        <TextView android:id="@+id/textC"
+                  android:layout_width="20dp"
+                  android:layout_height="20dp"
+                  android:textColor="#00ffff"
+                  android:text="C"
+                  android:gravity="center"
+                  android:layout_alignParentBottom="true"
+                  android:layout_alignParentLeft="true"/>
+        <EditText android:id="@+id/colorC"
+                  android:layout_width="50dp"
+                  android:layout_height="20dp"
+                  android:textColor="#939393"
+                  android:layout_alignParentBottom="true"
+                  android:layout_toRightOf="@id/textC"/>
+
+        <TextView android:id="@+id/textM"
+                  android:layout_width="20dp"
+                  android:layout_height="20dp"
+                  android:textColor="#ff00ff"
+                  android:text="M"
+                  android:gravity="center"
+                  android:layout_alignParentBottom="true"
+                  android:layout_toRightOf="@+id/colorC"/>
+        <EditText android:id="@+id/colorM"
+                  android:layout_width="50dp"
+                  android:layout_height="20dp"
+                  android:textColor="#939393"
+                  android:layout_alignParentBottom="true"
+                  android:layout_toRightOf="@id/textM"/>
+
+        <TextView android:id="@+id/textY"
+                  android:layout_width="20dp"
+                  android:layout_height="20dp"
+                  android:textColor="#ffff00"
+                  android:text="Y"
+                  android:gravity="center"
+                  android:layout_alignParentBottom="true"
+                  android:layout_toRightOf="@+id/colorM"/>
+        <EditText android:id="@+id/colorY"
+                  android:layout_width="50dp"
+                  android:layout_height="20dp"
+                  android:textColor="#939393"
+                  android:layout_alignParentBottom="true"
+                  android:layout_toRightOf="@id/textY"/>
+
+        <TextView android:id="@+id/textK"
+                  android:layout_width="20dp"
+                  android:layout_height="20dp"
+                  android:textColor="#000000"
+                  android:text="K"
+                  android:gravity="center"
+                  android:layout_alignParentBottom="true"
+                  android:layout_toRightOf="@+id/colorY"/>
+        <EditText android:layout_width="50dp"
+                  android:layout_height="20dp"
+                  android:textColor="#939393"
+                  android:layout_alignParentBottom="true"
+                  android:layout_toRightOf="@id/textK"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout android:layout_width="260dp"
+                    android:layout_height="110dp"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_gravity="center_horizontal">
+
+        <Button android:id="@+id/paletteToHome"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@mipmap/home"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"/>
+        <TextView android:layout_width="100dp"
+                  android:layout_height="20dp"
+                  android:text="Home"
+                  android:textColor="#a491ce"
+                  android:layout_marginLeft="10dp"
+                  android:layout_below="@+id/paletteToHome"/>
+
+        <Button android:id="@+id/paletteToPrint"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@mipmap/print"
+                android:layout_marginLeft="185dp"
+                android:layout_alignParentTop="true"/>
+        <TextView android:layout_width="90dp"
+                  android:layout_height="20dp"
+                  android:text="Print Pigment"
+                  android:textColor="#b5e5fd"
+                  android:layout_marginLeft="170dp"
+                  android:layout_below="@+id/paletteToPrint"/>
+
+
+    </RelativeLayout>
+
+</LinearLayout>

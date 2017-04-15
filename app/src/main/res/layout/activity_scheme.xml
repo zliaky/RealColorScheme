@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="#ffffff">
+
+    <GridView xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/gridview"
+              android:layout_width="match_parent"
+              android:layout_height="510dp"
+              android:columnWidth="288dp"
+              android:numColumns="2"
+              android:verticalSpacing="10dp"
+              android:horizontalSpacing="5dp"
+              android:stretchMode="columnWidth"
+              android:gravity="center"/>
+
+    <RelativeLayout android:layout_width="260dp"
+                    android:layout_height="120dp"
+                    android:layout_gravity="center_horizontal"
+                    android:paddingTop="10dp">
+
+        <Button android:id="@+id/collectionToHome"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@mipmap/home"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"/>
+
+        <TextView android:layout_width="100dp"
+                  android:layout_height="20dp"
+                  android:text="Home"
+                  android:textColor="#393939"
+                  android:layout_marginLeft="10dp"
+                  android:layout_below="@+id/collectionToHome"/>
+
+        <Button android:id="@+id/addCollection"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@mipmap/plus"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"/>
+
+        <TextView android:layout_width="100dp"
+                  android:layout_height="20dp"
+                  android:text="Add"
+                  android:textColor="#393939"
+                  android:layout_marginLeft="215dp"
+                  android:layout_below="@+id/addCollection"/>
+
+
+    </RelativeLayout>
+
+
+
+</LinearLayout>

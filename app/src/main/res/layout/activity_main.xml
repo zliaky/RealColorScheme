@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="#ffffff">
+    <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="240dp"
+            android:src="@mipmap/img" />
+    <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="75dp"
+            android:src="@mipmap/colorbar" />
+
+
+    <RelativeLayout
+            android:layout_width="280dp"
+            android:layout_height="260dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp" >
+        <Button
+                android:id="@+id/Prisma"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:background="@mipmap/prisma"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"/>
+        <TextView android:layout_width="100dp"
+                  android:layout_height="20dp"
+                  android:text="Prisma"
+                  android:textColor="#939393"
+                  android:layout_marginLeft="25dp"
+                  android:layout_below="@+id/Prisma"/>
+        <Button
+                android:id="@+id/AR"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:background="@mipmap/ar"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true" />
+        <TextView android:layout_width="100dp"
+                  android:layout_height="20dp"
+                  android:text="AR Draw"
+                  android:textColor="#939393"
+                  android:layout_marginLeft="202dp"
+                  android:layout_below="@+id/AR"/>
+        <Button
+                android:id="@+id/Palette"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:background="@mipmap/palette"
+                android:layout_alignParentLeft="true"
+                android:layout_marginTop="140dp"/>
+        <TextView android:layout_width="100dp"
+                  android:layout_height="20dp"
+                  android:text="Palette"
+                  android:textColor="#939393"
+                  android:layout_marginLeft="25dp"
+                  android:layout_below="@+id/Palette"/>
+        <Button
+                android:id="@+id/Scheme"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:background="@mipmap/scheme"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="140dp"/>
+        <TextView android:layout_width="100dp"
+                  android:layout_height="20dp"
+                  android:text="Color Scheme"
+                  android:textColor="#939393"
+                  android:layout_marginLeft="188dp"
+                  android:layout_below="@+id/Scheme"/>
+    </RelativeLayout>
+
+
+</LinearLayout>
