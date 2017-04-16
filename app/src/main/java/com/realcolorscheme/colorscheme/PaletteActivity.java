@@ -61,6 +61,7 @@ public class PaletteActivity extends Activity {
             setBtnBackground(colorBtn[i], colorList[i]);
         }
         setColorText(color);
+        setColorShowBtn(color);
     }
 
     private int[] rgb2cmyk(int color) {
