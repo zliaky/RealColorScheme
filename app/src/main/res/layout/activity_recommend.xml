@@ -11,10 +11,12 @@
                android:layout_height="340dp"
                android:layout_gravity="top|center_horizontal"/>
 
-    <TextView android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:textColor="#393939"
-              android:text="Recommend Color Scheme"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Recommend Color Scheme"
+        android:textAlignment="center"
+        android:textColor="#393939" />
 
     <LinearLayout android:orientation="horizontal"
                   android:layout_width="match_parent"
@@ -40,7 +42,17 @@
                 android:layout_height="60dp"/>
 
     </LinearLayout>
-    
+
+
+    <!--<ListView-->
+        <!--android:id="@android:id/list"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_marginTop="5dp"-->
+        <!--android:layout_weight="1"-->
+        <!--android:divider="@null"-->
+        <!--android:elevation="0dp" />-->
+    <!---->
     <RelativeLayout android:layout_width="320dp"
                     android:layout_height="160dp"
                     android:layout_gravity="center_horizontal">
@@ -92,16 +104,20 @@
                     android:rowCount="2"
                     android:columnCount="2">
 
-            <Button android:layout_width="65dp"
+            <Button android:id="@+id/showBtn0"
+                    android:layout_width="65dp"
                     android:layout_height="65dp"
                     android:background="@drawable/button_shape"/>
-            <Button android:layout_width="65dp"
+            <Button android:id="@+id/showBtn1"
+                    android:layout_width="65dp"
                     android:layout_height="65dp"
                     android:background="@drawable/button_shape"/>
-            <Button android:layout_width="65dp"
+            <Button android:id="@+id/showBtn2"
+                    android:layout_width="65dp"
                     android:layout_height="65dp"
                     android:background="@drawable/button_shape"/>
-            <Button android:layout_width="65dp"
+            <Button android:id="@+id/showBtn3"
+                    android:layout_width="65dp"
                     android:layout_height="65dp"
                     android:background="@drawable/button_shape"/>
 

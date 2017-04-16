@@ -3,6 +3,7 @@ package com.realcolorscheme.colorscheme;
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
@@ -55,7 +56,7 @@ public class SchemeActivity extends Activity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(intent, 1);
+                startActivityForResult(intent, 0);//open gallery
             }
         });
     }
@@ -77,12 +78,49 @@ public class SchemeActivity extends Activity {
             }
         }
 
-        if (requestCode == 1) {
+        if (requestCode == 0) {
             Intent intent = new Intent();
             intent.setClass(SchemeActivity.this, RecommendActivity.class);
             SchemeActivity.this.startActivity(intent);
         } else {;
         }
+
+//        switch (resultCode) {
+//            case Activity.RESULT_OK: {
+//                Uri uri = data.getData();
+//
+//                final String scheme = uri.getScheme();
+//                String filename = null;
+//                if ( scheme == null )
+//                    filename = uri.getPath();
+//                else if ( ContentResolver.SCHEME_FILE.equals( scheme ) ) {
+//                    filename = uri.getPath();
+//                } else if ( ContentResolver.SCHEME_CONTENT.equals( scheme ) ) {
+//                    Cursor cursor = getContentResolver().query( uri, new String[] { MediaStore.Images.ImageColumns.DATA }, null, null, null );
+//                    if ( null != cursor ) {
+//                        if ( cursor.moveToFirst() ) {
+//                            int index = cursor.getColumnIndex( MediaStore.Images.ImageColumns.DATA );
+//                            if ( index > -1 ) {
+//                                filename= cursor.getString( index );
+//                            }
+//                        }
+//                        cursor.close();
+//                    }
+//                }
+//
+//                Global.filename = filename;
+//
+//                Intent intent=new Intent(SchemeActivity.this,RecommendActivity.class);
+//                startActivity(intent);
+//                this.finish();
+//            }
+//            break;
+//            case Activity.RESULT_CANCELED:// 取消
+//                break;
+//        }
+
+
+
     }
 
 }
