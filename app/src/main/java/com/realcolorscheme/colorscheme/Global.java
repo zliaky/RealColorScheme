@@ -25,4 +25,8 @@ public class Global {
 
     public static boolean btState;
 
+    //Bluetooth
+
+
+
 }

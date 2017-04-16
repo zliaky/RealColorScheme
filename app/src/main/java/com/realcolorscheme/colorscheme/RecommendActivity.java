@@ -56,78 +56,21 @@ public class RecommendActivity extends Activity {
                 (Button)findViewById(R.id.showBtn3),
         };
 
-
-
-
-
-        recBtns[0].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Drawable background = recBtns[0].getBackground();
-                ColorDrawable colorDrawable = (ColorDrawable) background;
-                int color = colorDrawable.getColor();
-                System.out.println("Color" + color);
-                updateQueue(color);
-            }
-        });
-
-        recBtns[1].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Drawable background = recBtns[1].getBackground();
-                ColorDrawable colorDrawable = (ColorDrawable) background;
-                int color = colorDrawable.getColor();
-                System.out.println("Color" + color);
-                updateQueue(color);
-            }
-        });
-        recBtns[2].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Drawable background = recBtns[2].getBackground();
-                ColorDrawable colorDrawable = (ColorDrawable) background;
-                int color = colorDrawable.getColor();
-                System.out.println("Color" + color);
-                updateQueue(color);
-            }
-        });
-
-        recBtns[3].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Drawable background = recBtns[3].getBackground();
-                ColorDrawable colorDrawable = (ColorDrawable) background;
-                int color = colorDrawable.getColor();
-                System.out.println("Color" + color);
-                updateQueue(color);
-            }
-        });
-
-        recBtns[4].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Drawable background = recBtns[4].getBackground();
-                ColorDrawable colorDrawable = (ColorDrawable) background;
-                int color = colorDrawable.getColor();
-                System.out.println("Color" + color);
-                updateQueue(color);
-            }
-        });
-
-        recBtns[5].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Drawable background = recBtns[5].getBackground();
-                ColorDrawable colorDrawable = (ColorDrawable) background;
-                int color = colorDrawable.getColor();
-                System.out.println("Color" + color);
-                updateQueue(color);
-            }
-        });
-
+        for(int i = 0; i < 6; i++) {
+            recBtns[i].setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Drawable background = ((Button)view).getBackground();
+                    ColorDrawable colorDrawable = (ColorDrawable) background;
+                    int color = colorDrawable.getColor();
+                    System.out.println("Color" + color);
+                    updateQueue(color);
+                }
+            });
+        }
 
         cluster = new Cluster();
-        Bitmap bitmap = Global.bitmap;//BitmapFactory.decodeFile(Global.filename);
+        Bitmap bitmap = Global.bitmap;
         int seedNum = 6;
         int iterNum = 3;
         if(cluster.setImage(bitmap)) {
