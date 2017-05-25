@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
             imgDir.mkdirs();
         }
 
-        Global.bitmapList = new ArrayList<Bitmap>();
+        Global.filenameList = new ArrayList<String>();
     }
 
     @Override

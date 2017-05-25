@@ -1,7 +1,9 @@
 package com.realcolorscheme.colorscheme;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.ContentResolver;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -25,6 +27,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -36,25 +39,90 @@ public class SchemeActivity extends Activity {
     private GridView gridView;
     private Button homeBtn;
     private Button addBtn;
+    private List<Bitmap> bitmapList;
+    private ImageAdapter imageAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scheme);
+        bitmapList = new ArrayList<Bitmap>();
+
+        File path = new File(Global.imgPath);
+        File[] files = path.listFiles();
+
+        for (int i = 0; i < files.length; i++) {
+            try {
+                Bitmap tempBitmap = getImageDrawable(files[i].getAbsolutePath());
+                bitmapList.add(tempBitmap);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
 
         gridView = (GridView) findViewById(R.id.gridview);
-        gridView.setAdapter(new ImageAdapter(this));
+        imageAdapter = new ImageAdapter(this, bitmapList);
+        gridView.setAdapter(imageAdapter);
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
-                Global.bitmap = Global.bitmapList.get(position);
+                Global.bitmap = bitmapList.get(position);
                 Intent intent = new Intent();
                 intent.setClass(SchemeActivity.this, RecommendActivity.class);
                 SchemeActivity.this.startActivity(intent);
             }
         });
+/*
 
+        gridView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(SchemeActivity.this);
+                builder.setTitle("删除");
+                builder.setMessage("确认删除收藏吗？");
+                builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        System.out.println("1");
+                        bitmapList.remove(position);
+                        System.out.println("2");
+
+                        imageAdapter.setBitmapList(bitmapList);
+                        Toast.makeText(SchemeActivity.this, position + " " + bitmapList.size() + " "
+                                        + " " + imageAdapter.getBitmapListSize(),
+                                Toast.LENGTH_SHORT).show();
+                        System.out.println("3");
+                        imageAdapter.notifyDataSetChanged();
+//                        Toast.makeText(SchemeActivity.this, position + " " + imageAdapter.getBitmapListSize(),
+//                                Toast.LENGTH_SHORT).show();
+                        System.out.println("4");
+                        File file = new File(Global.imgPath + "/" + Global.filenameList.get(position));
+                        System.out.println("5");
+                        if (file.exists() && file.isFile()) {
+                            System.out.println("exist");
+//                            file.delete();
+                        }
+                        System.out.println("6");
+//                        Global.filenameList.remove(position);
+
+                        Toast.makeText(SchemeActivity.this, "Delete succeed!",
+                                Toast.LENGTH_SHORT).show();
+                        dialog.dismiss();
+                    }
+                });
+                builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                builder.create().show();
+                return true;
+            }
+        });
+*/
         homeBtn = (Button)findViewById(R.id.collectionToHome);
         homeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,18 +141,6 @@ public class SchemeActivity extends Activity {
                 startActivityForResult(intent, 0);//open gallery
             }
         });
-
-        File path = new File(Global.imgPath);
-        File[] files = path.listFiles();
-
-        for (int i = 0; i < files.length; i++) {
-            try {
-                Bitmap tempBitmap = getImageDrawable(files[i].getAbsolutePath());
-                Global.bitmapList.add(tempBitmap);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
     }
 
     public Bitmap getImageDrawable(String path)

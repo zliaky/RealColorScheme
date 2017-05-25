@@ -1,6 +1,7 @@
 package com.realcolorscheme.colorscheme;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,8 @@ import android.widget.GridView;
 import android.widget.ImageView;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by zliaky on 2017/4/15.
@@ -16,13 +19,10 @@ import java.io.File;
 public class ImageAdapter extends BaseAdapter {
     private Context mContext;
     private Uri[] uris;
-
-    public ImageAdapter(Context c) {
-        mContext = c;
-    }
+    private List<Bitmap> mBitmapList = new ArrayList<Bitmap>();
 
     public int getCount() {
-        return Global.bitmapList.size();
+        return mBitmapList.size();
 //        return mThumbIds.length;
     }
 
@@ -32,6 +32,20 @@ public class ImageAdapter extends BaseAdapter {
 
     public long getItemId(int position) {
         return 0;
+    }
+
+    public ImageAdapter(Context context, List<Bitmap> bitmapList) {
+        mContext = context;
+        mBitmapList = bitmapList;
+    }
+
+    public void setBitmapList(List<Bitmap> bitmapList) {
+//        mBitmapList.clear();
+        mBitmapList = bitmapList;
+    }
+
+    public int getBitmapListSize() {
+        return mBitmapList.size();
     }
 
     // create a new ImageView for each item referenced by the Adapter
@@ -49,7 +63,7 @@ public class ImageAdapter extends BaseAdapter {
 
 //        imageView.setImageResource(mThumbIds[position]);
 
-        imageView.setImageBitmap(Global.bitmapList.get(position));
+        imageView.setImageBitmap(mBitmapList.get(position));
         return imageView;
 
     }

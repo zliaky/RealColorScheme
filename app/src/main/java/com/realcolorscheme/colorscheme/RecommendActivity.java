@@ -79,6 +79,7 @@ public class RecommendActivity extends Activity {
                     try {
                         FileOutputStream out = new FileOutputStream(img);
                         Global.bitmap.compress(Bitmap.CompressFormat.PNG, 90, out);
+                        Global.filenameList.add(Global.filename);
                         out.flush();
                         out.close();
                     } catch (IOException e) {

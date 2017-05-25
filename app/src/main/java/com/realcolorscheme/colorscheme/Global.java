@@ -10,6 +10,6 @@ public class Global {
     public static String imgPath;
     public static String filename;
     public static Bitmap bitmap;
-    public static List<Bitmap> bitmapList;
+    public static List<String> filenameList;
 
 }
