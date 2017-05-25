@@ -75,15 +75,12 @@ public class RecommendActivity extends Activity {
             @Override
             public void onClick(View v) {
                 File img = new File(Global.imgPath + "/" + Global.filename);
-                File txt = new File(Global.imgPath + "/" + Global.filename + "t.txt");
                 if (!img.exists()) {
                     try {
                         FileOutputStream out = new FileOutputStream(img);
                         Global.bitmap.compress(Bitmap.CompressFormat.PNG, 90, out);
                         out.flush();
                         out.close();
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
