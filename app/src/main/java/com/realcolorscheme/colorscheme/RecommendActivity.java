@@ -1,6 +1,7 @@
 package com.realcolorscheme.colorscheme;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -9,13 +10,22 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.SystemClock;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -27,11 +37,13 @@ public class RecommendActivity extends Activity {
     private ImageView imageView;
     private Button homeBtn;
     private Button printOut;
-    private Button collect;
-//    private Button
+    private Button collectBtn;
+
     private Cluster cluster;
     private Button[] recBtns = new Button[]{};
     private Button[] showBtns = new Button[]{};
+
+    private int[] recColor;
 
     //Queue<Integer> fifo = new LinkedList<Integer>();
     private int fifo[] = {-1,-1,-1,-1,-1};
@@ -46,6 +58,46 @@ public class RecommendActivity extends Activity {
         imageView.setImageBitmap(Global.bitmap);
         imageView.setOnTouchListener(imgSourceOnTouchListener);
 
+        homeBtn = (Button)findViewById(R.id.recToHome);
+        homeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setClass(RecommendActivity.this, MainActivity.class);
+                RecommendActivity.this.startActivity(intent);
+            }
+        });
+
+        recColor = new int[6];
+
+        collectBtn = (Button)findViewById(R.id.recCollect);
+        collectBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                File img = new File(Global.imgPath + "/" + Global.filename);
+                File txt = new File(Global.imgPath + "/" + Global.filename + "t.txt");
+                if (!img.exists()) {
+                    try {
+                        FileOutputStream out = new FileOutputStream(img);
+                        Global.bitmap.compress(Bitmap.CompressFormat.PNG, 90, out);
+                        out.flush();
+                        out.close();
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    Toast.makeText(RecommendActivity.this, "Collect succeed!",
+                            Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(RecommendActivity.this, "Already colleced!",
+                            Toast.LENGTH_SHORT).show();
+                }
+
+
+//              File file = new File("///mnt/sdcard/DCIM/RealColor");
+            }
+        });
 
         recBtns = new Button[]{
             (Button)findViewById(R.id.recBtn0),
@@ -57,10 +109,10 @@ public class RecommendActivity extends Activity {
         };
 
         showBtns = new Button[]{
-                (Button)findViewById(R.id.showBtn0),
-                (Button)findViewById(R.id.showBtn1),
-                (Button)findViewById(R.id.showBtn2),
-                (Button)findViewById(R.id.showBtn3),
+            (Button)findViewById(R.id.showBtn0),
+            (Button)findViewById(R.id.showBtn1),
+            (Button)findViewById(R.id.showBtn2),
+            (Button)findViewById(R.id.showBtn3),
         };
 
         for(int i = 0; i < 6; i++) {
@@ -93,6 +145,7 @@ public class RecommendActivity extends Activity {
             Node[] seeds = cluster.getSeeds();
             for(int i = 0; i < seedNum; i++) {
                 recBtns[i].setBackgroundColor(Color.rgb(seeds[i].r,seeds[i].g,seeds[i].b));
+                recColor[i] = Color.rgb(seeds[i].r,seeds[i].g,seeds[i].b);
             }
 
         }

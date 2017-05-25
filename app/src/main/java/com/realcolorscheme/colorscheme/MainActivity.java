@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.provider.MediaStore;
@@ -17,6 +18,8 @@ import android.widget.Button;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -73,6 +76,14 @@ public class MainActivity extends AppCompatActivity {
                 MainActivity.this.startActivity(intent);
             }
         });
+
+        Global.imgPath = getApplicationContext().getFilesDir().getAbsolutePath()+"/img";
+        File imgDir = new File(Global.imgPath);
+        if (!imgDir.exists()) {
+            imgDir.mkdirs();
+        }
+
+        Global.bitmapList = new ArrayList<Bitmap>();
     }
 
     @Override
@@ -86,6 +97,8 @@ public class MainActivity extends AppCompatActivity {
             ContentResolver cr = this.getContentResolver();
             try {
                 Global.bitmap = BitmapFactory.decodeStream(cr.openInputStream(uri));
+                List<String> segments = uri.getPathSegments();
+                Global.filename = segments.get(segments.size() - 1);
             } catch (FileNotFoundException e) {
                 System.out.println("can not found file");
             }

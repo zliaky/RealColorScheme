@@ -1,24 +1,29 @@
 package com.realcolorscheme.colorscheme;
 
 import android.content.Context;
+import android.net.Uri;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 
+import java.io.File;
+
 /**
  * Created by zliaky on 2017/4/15.
  */
 public class ImageAdapter extends BaseAdapter {
     private Context mContext;
+    private Uri[] uris;
 
     public ImageAdapter(Context c) {
         mContext = c;
     }
 
     public int getCount() {
-        return mThumbIds.length;
+        return Global.bitmapList.size();
+//        return mThumbIds.length;
     }
 
     public Object getItem(int position) {
@@ -42,8 +47,11 @@ public class ImageAdapter extends BaseAdapter {
             imageView = (ImageView) convertView;
         }
 
-        imageView.setImageResource(mThumbIds[position]);
+//        imageView.setImageResource(mThumbIds[position]);
+
+        imageView.setImageBitmap(Global.bitmapList.get(position));
         return imageView;
+
     }
 
     // references to our images

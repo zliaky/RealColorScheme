@@ -4,7 +4,10 @@ import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -14,13 +17,22 @@ import android.widget.Button;
 import android.widget.GridView;
 import android.widget.Toast;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.List;
 
 /**
  * Created by zliaky on 2017/4/13.
  */
 public class SchemeActivity extends Activity {
 
+    private static final int BUFFER_SIZE = 8192;
     private GridView gridView;
     private Button homeBtn;
     private Button addBtn;
@@ -36,8 +48,10 @@ public class SchemeActivity extends Activity {
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
-                Toast.makeText(SchemeActivity.this, "" + position,
-                        Toast.LENGTH_SHORT).show();
+                Global.bitmap = Global.bitmapList.get(position);
+                Intent intent = new Intent();
+                intent.setClass(SchemeActivity.this, RecommendActivity.class);
+                SchemeActivity.this.startActivity(intent);
             }
         });
 
@@ -59,6 +73,49 @@ public class SchemeActivity extends Activity {
                 startActivityForResult(intent, 0);//open gallery
             }
         });
+
+        File path = new File(Global.imgPath);
+        File[] files = path.listFiles();
+
+        for (int i = 0; i < files.length; i++) {
+            try {
+                Bitmap tempBitmap = getImageDrawable(files[i].getAbsolutePath());
+                Global.bitmapList.add(tempBitmap);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public Bitmap getImageDrawable(String path)
+            throws IOException
+    {
+        //打开文件
+        File file = new File(path);
+        if(!file.exists())
+        {
+            return null;
+        }
+
+        ByteArrayOutputStream outStream = new ByteArrayOutputStream();
+        byte[] bt = new byte[BUFFER_SIZE];
+
+        //得到文件的输入流
+        InputStream in = new FileInputStream(file);
+
+        //将文件读出到输出流中
+        int readLength = in.read(bt);
+        while (readLength != -1) {
+            outStream.write(bt, 0, readLength);
+            readLength = in.read(bt);
+        }
+
+        //转换成byte 后 再格式化成位图
+        byte[] data = outStream.toByteArray();
+        Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);// 生成位图
+//        BitmapDrawable bd = new BitmapDrawable(bitmap);
+
+        return bitmap;
     }
 
 
@@ -73,6 +130,8 @@ public class SchemeActivity extends Activity {
             ContentResolver cr = this.getContentResolver();
             try {
                 Global.bitmap = BitmapFactory.decodeStream(cr.openInputStream(uri));
+                List<String> segments = uri.getPathSegments();
+                Global.filename = segments.get(segments.size() - 1);
             } catch (FileNotFoundException e) {
                 System.out.println("can not found file");
             }
