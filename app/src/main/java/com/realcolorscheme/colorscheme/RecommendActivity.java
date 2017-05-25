@@ -23,6 +23,8 @@ public class RecommendActivity extends Activity {
 
     private ImageView imageView;
     private Button homeBtn;
+    private Button printOut;
+    private Button collect;
 //    private Button
     private Cluster cluster;
     private Button[] recBtns = new Button[]{};
@@ -93,6 +95,16 @@ public class RecommendActivity extends Activity {
             System.out.println("bitmap null");
             //debug("bitmap null");
         }
+
+        printOut = (Button)findViewById(R.id.recPrint);
+        printOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               Bluetooth.connectBt();
+            }
+        });
+
+
 
     }
     void updateQueue(int color) {
