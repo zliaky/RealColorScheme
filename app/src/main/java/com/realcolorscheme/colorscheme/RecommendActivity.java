@@ -4,10 +4,13 @@ import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.Matrix;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
+import android.os.SystemClock;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -41,6 +44,8 @@ public class RecommendActivity extends Activity {
 
         imageView = (ImageView)findViewById(R.id.recImg);
         imageView.setImageBitmap(Global.bitmap);
+        imageView.setOnTouchListener(imgSourceOnTouchListener);
+
 
         recBtns = new Button[]{
             (Button)findViewById(R.id.recBtn0),
@@ -127,5 +132,40 @@ public class RecommendActivity extends Activity {
             showBtns[i].setBackgroundDrawable(drawable);
         }
     }
+
+
+    View.OnTouchListener imgSourceOnTouchListener
+            = new View.OnTouchListener(){
+
+        @Override
+        public boolean onTouch(View view, MotionEvent event) {
+            if (event.getAction() == MotionEvent.ACTION_UP) {
+                float eventX = event.getX();
+                float eventY = event.getY();
+                float[] eventXY = new float[] {eventX, eventY};
+
+                Matrix invertMatrix = new Matrix();
+                ((ImageView)view).getImageMatrix().invert(invertMatrix);
+
+                invertMatrix.mapPoints(eventXY);
+                int x = Integer.valueOf((int)eventXY[0]);
+                int y = Integer.valueOf((int)eventXY[1]);
+
+                boolean outside = false;
+                //Limit x, y range within bitmap
+                if(x < 0 || x > Global.bitmap.getWidth()-1 ||
+                        y < 0|| y > Global.bitmap.getHeight()-1){
+                    outside = true;
+                }
+
+                if (!outside) {
+                    int touchedRGB = Global.bitmap.getPixel(x, y);
+                    updateQueue(touchedRGB);
+                }
+            }
+
+            return true;
+        }
+    };
 
 }
